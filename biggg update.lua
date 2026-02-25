@@ -1,1 +1,908 @@
-local v0=game:GetService("Players");local v1=v0.LocalPlayer;local v2=game:GetService("UserInputService");local v3=game:GetService("RunService");local v4=game:GetService("TweenService");local v5=game:GetService("HttpService");local v6={{Key="A7F3K9",User="tillahibillahi"},{Key="X2B8M1",User="warcrimeleaker"},{Key="XgFvD-SFvdS",User="kernelhookxyz1"},{Key="XDTx$g-$@1fh",User="utakke1234567890"},{Key="H3D7C6",User="Player5"}};local v7=false;local v8=Instance.new("ScreenGui",game.CoreGui);v8.ResetOnSpawn=false;local v10=Instance.new("Frame",v8);v10.Size=UDim2.fromOffset(500,250);v10.Position=UDim2.fromScale(0.5,0.5);v10.AnchorPoint=Vector2.new(0.5,0.5);v10.BackgroundColor3=Color3.fromRGB(40,40,40);v10.BackgroundTransparency=0.4;v10.BorderSizePixel=0;local v17=Instance.new("UICorner",v10);v17.CornerRadius=UDim.new(0,6);local v19=Instance.new("TextLabel",v10);v19.Size=UDim2.new(1, -20,1, -60);v19.Position=UDim2.fromOffset(10,10);v19.BackgroundTransparency=1;v19.TextColor3=Color3.fromRGB(230,230,230);v19.Font=Enum.Font.Code;v19.TextSize=18;v19.TextXAlignment=Enum.TextXAlignment.Left;v19.TextYAlignment=Enum.TextYAlignment.Top;v19.Text="Kernel\nEnter your access key below:\n>";local v32=Instance.new("TextBox",v10);v32.Size=UDim2.fromOffset(480,35);v32.Position=UDim2.fromOffset(10,200);v32.BackgroundColor3=Color3.fromRGB(30,30,30);v32.BackgroundTransparency=0.2;v32.TextColor3=Color3.fromRGB(255,255,255);v32.ClearTextOnFocus=true;v32.Font=Enum.Font.Code;v32.TextSize=18;v32.PlaceholderText="Enter Key Here";v32.BorderSizePixel=0;local function v43(v48) v19.Text=v19.Text   .. "\n"   .. v48 ;end local v44=false;local v45,v46,v47;v10.InputBegan:Connect(function(v50) if (v50.UserInputType==Enum.UserInputType.MouseButton1) then v44=true;v46=v50.Position;v47=v10.Position;v50.Changed:Connect(function() if (v50.UserInputState==Enum.UserInputState.End) then v44=false;end end);end end);v10.InputChanged:Connect(function(v51) if (v51.UserInputType==Enum.UserInputType.MouseMovement) then v45=v51;end end);v2.InputChanged:Connect(function(v52) if ((v52==v45) and v44) then local v367=v52.Position-v46 ;v10.Position=UDim2.new(v47.X.Scale,v47.X.Offset + v367.X ,v47.Y.Scale,v47.Y.Offset + v367.Y );end end);v32.FocusLost:Connect(function(v53) if  not v53 then return;end local v54=v32.Text:gsub("%s","");local v55=false;local v56=nil;for v282,v283 in ipairs(v6) do if (v54==v283.Key) then v55=true;v56=v283.User;break;end end if v55 then if ((v1.Name==v56) or (v1.DisplayName==v56)) then v7=true;v8:Destroy();v43("Key accepted. Welcome, "   .. (((v1.DisplayName~="") and v1.DisplayName) or v1.Name)   .. "." );local function v417(v462) local v463=Instance.new("ScreenGui",game.CoreGui);v463.ResetOnSpawn=false;local v465=Instance.new("TextLabel",v463);v465.Size=UDim2.fromScale(0.5,0.2);v465.Position=UDim2.fromScale(0.5,0.5);v465.AnchorPoint=Vector2.new(0.5,0.5);v465.BackgroundTransparency=1;v465.Text="Exodus";v465.TextColor3=Color3.fromRGB(200,0,200);v465.Font=Enum.Font.GothamBold;v465.TextScaled=true;v465.TextStrokeTransparency=0.6;local v476=TweenInfo.new(0.8,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut, -1,true);local v477={TextTransparency=0.3,TextSize=96};local v478=v4:Create(v465,v476,v477);v478:Play();task.delay(2.5,function() v478:Cancel();v463:Destroy();if v462 then v462();end end);end v417(function() initializeScript();end);else v32.Text="";v43("> NOT YOUR KEY");end else v32.Text="";v43("> INVALID KEY");end end);repeat task.wait();until v7 function initializeScript() local v57=game:GetService("Players");local v58=game:GetService("UserInputService");local v59=game:GetService("RunService");local v60=workspace.CurrentCamera;local v61=v57.LocalPlayer;local v62=v61:GetMouse();local v63=game:GetService("HttpService");local v64={Parts={"HumanoidRootPart"},Size=Vector3.new(25,25,25),Transparency=1,CanCollide=false};local v65=0.5;local v66=0.05;local v67=false;local v68=0;local v69=false;local v70=false;local v71=true;local v72=false;local v73=false;local v74=25;local v75=50;local v76={};local v77={};local v78={};local v79={};local v80="HaunterSettings.json";local v81=true;local v82=true;local v83=Enum.KeyCode.CapsLock;local v84=Enum.KeyCode.LeftAlt;local v85=Instance.new("ScreenGui",game.CoreGui);v85.Enabled=false;v85.Name="HaunterImGui";local v88=Instance.new("Frame",v85);v88.Size=UDim2.fromOffset(320,560);v88.Position=UDim2.fromScale(0.04,0.18);v88.BackgroundColor3=Color3.fromRGB(15,15,15);v88.BorderSizePixel=0;v88.Active=true;v88.Draggable=false;local v95=Instance.new("UICorner",v88);v95.CornerRadius=UDim.new(0,4);local v97=Instance.new("Frame",v88);v97.Size=UDim2.new(1,0,0,32);v97.Position=UDim2.fromOffset(0,0);v97.BackgroundColor3=Color3.fromRGB(25,25,25);v97.BorderSizePixel=0;local v102=Instance.new("UICorner",v97);v102.CornerRadius=UDim.new(0,4);local v104=Instance.new("TextLabel",v97);v104.Size=UDim2.new(1, -60,1,0);v104.Position=UDim2.fromOffset(8,0);v104.BackgroundTransparency=1;v104.Text="Exodus";v104.TextColor3=Color3.new(1,1,1);v104.Font=Enum.Font.GothamSemibold;v104.TextSize=16;v104.TextXAlignment=Enum.TextXAlignment.Left;local v115=Instance.new("TextButton",v97);v115.Size=UDim2.fromOffset(44,32);v115.Position=UDim2.new(1, -44,0,0);v115.BackgroundTransparency=1;v115.Text="×";v115.TextColor3=Color3.new(1,1,1);v115.Font=Enum.Font.GothamBold;v115.TextSize=20;v115.MouseButton1Click:Connect(function() v69=false;v85.Enabled=false;end);local v124=Instance.new("Frame",v88);v124.Size=UDim2.new(1,0,1, -32);v124.Position=UDim2.fromOffset(0,32);v124.BackgroundTransparency=1;local function v128(v285,v286,v287) local v288=Instance.new("Frame",v285);v288.Size=UDim2.new(1, -16,0,28);v288.Position=UDim2.fromOffset(8,v286);v288.BackgroundTransparency=1;local v292=Instance.new("TextLabel",v288);v292.Size=UDim2.new(1,0,1,0);v292.BackgroundTransparency=1;v292.Text=v287;v292.TextColor3=Color3.fromRGB(180,180,180);v292.Font=Enum.Font.Gotham;v292.TextSize=14;v292.TextXAlignment=Enum.TextXAlignment.Left;return v288;end local v129=v128(v124,8,"Tracers");local v130=Instance.new("TextButton",v129);v130.Size=UDim2.fromOffset(50,20);v130.Position=UDim2.new(1, -50,0,4);v130.BackgroundColor3=Color3.fromRGB(60,60,60);v130.BorderSizePixel=0;v130.Text="";local v136=Instance.new("UICorner",v130);v136.CornerRadius=UDim.new(0,10);local function v138() v130.BackgroundColor3=(v70 and Color3.fromRGB(0,150,0)) or Color3.fromRGB(60,60,60) ;end v130.MouseButton1Click:Connect(function() v70= not v70;v138();saveSettings();end);v138();local v139=v128(v124,36,"ESP");local v140=Instance.new("TextButton",v139);v140.Size=UDim2.fromOffset(50,20);v140.Position=UDim2.new(1, -50,0,4);v140.BackgroundColor3=Color3.fromRGB(60,60,60);v140.BorderSizePixel=0;v140.Text="";local v146=Instance.new("UICorner",v140);v146.CornerRadius=UDim.new(0,10);local function v148() v140.BackgroundColor3=(v71 and Color3.fromRGB(0,150,0)) or Color3.fromRGB(60,60,60) ;end v140.MouseButton1Click:Connect(function() v71= not v71;v148();saveSettings();end);v148();local v149=v128(v124,64,"Triggerbot");local v150=Instance.new("TextButton",v149);v150.Size=UDim2.fromOffset(50,20);v150.Position=UDim2.new(1, -50,0,4);v150.BackgroundColor3=Color3.fromRGB(60,60,60);v150.BorderSizePixel=0;v150.Text="";local v156=Instance.new("UICorner",v150);v156.CornerRadius=UDim.new(0,10);local function v158() v150.BackgroundColor3=(v82 and Color3.fromRGB(0,150,0)) or Color3.fromRGB(60,60,60) ;end v150.MouseButton1Click:Connect(function() v82= not v82;v158();saveSettings();end);v158();local v159=v128(v124,92,"ESP Position");local v160=Instance.new("TextButton",v159);v160.Size=UDim2.fromOffset(50,20);v160.Position=UDim2.new(1, -50,0,4);v160.BackgroundColor3=Color3.fromRGB(60,60,60);v160.BorderSizePixel=0;v160.Text="";local v166=Instance.new("UICorner",v160);v166.CornerRadius=UDim.new(0,10);local function v168() v160.BackgroundColor3=(v81 and Color3.fromRGB(0,150,0)) or Color3.fromRGB(60,60,60) ;end v160.MouseButton1Click:Connect(function() v81= not v81;v168();saveSettings();end);v168();local v169=v128(v124,120,"Silent FOV");local v170=Instance.new("Frame",v169);v170.Size=UDim2.fromOffset(100,4);v170.Position=UDim2.new(1, -106,0,12);v170.BackgroundColor3=Color3.fromRGB(60,60,60);v170.BorderSizePixel=0;local v175=Instance.new("UICorner",v170);v175.CornerRadius=UDim.new(1,0);local v177=Instance.new("TextLabel",v169);v177.Size=UDim2.fromOffset(24,20);v177.Position=UDim2.new(1, -28,0,4);v177.BackgroundTransparency=1;v177.Text="25";v177.TextColor3=Color3.new(1,1,1);v177.Font=Enum.Font.Gotham;v177.TextSize=14;v177.TextXAlignment=Enum.TextXAlignment.Right;local v188=Instance.new("Frame",v170);v188.Size=UDim2.new(0.3,0,1,0);v188.BackgroundColor3=Color3.fromRGB(100,50,200);v188.BorderSizePixel=0;local v192=Instance.new("UICorner",v188);v192.CornerRadius=UDim.new(1,0);local v194=5;local v195=60;local v196=false;local function v197(v306) local v307=math.clamp((v306-v170.AbsolutePosition.X)/v170.AbsoluteSize.X ,0,1);v188.Size=UDim2.new(v307,0,1,0);local v309=math.floor(v194 + ((v195-v194) * v307) );v64.Size=Vector3.new(v309,v309,v309);v177.Text=tostring(v309);for v370 in pairs(v76) do expandHitboxes(v370);end saveSettings();end v170.InputBegan:Connect(function(v312) if (v312.UserInputType==Enum.UserInputType.MouseButton1) then v196=true;v197(v312.Position.X);end end);v170.InputEnded:Connect(function(v313) if (v313.UserInputType==Enum.UserInputType.MouseButton1) then v196=false;end end);v58.InputChanged:Connect(function(v314) if (v196 and (v314.UserInputType==Enum.UserInputType.MouseMovement)) then v197(v314.Position.X);end end);local v198=v128(v124,152,"Keybinds");local v199=Instance.new("TextButton",v198);v199.Size=UDim2.fromOffset(50,20);v199.Position=UDim2.new(1, -110,0,4);v199.BackgroundColor3=Color3.fromRGB(40,40,40);v199.BorderSizePixel=0;v199.Text=v83.Name;v199.TextColor3=Color3.new(1,1,1);v199.Font=Enum.Font.Gotham;v199.TextSize=12;local v209=Instance.new("UICorner",v199);v209.CornerRadius=UDim.new(0,4);local v211=Instance.new("TextLabel",v198);v211.Size=UDim2.fromOffset(50,20);v211.Position=UDim2.new(1, -55,0,4);v211.BackgroundTransparency=1;v211.Text="Speed";v211.TextColor3=Color3.fromRGB(180,180,180);v211.Font=Enum.Font.Gotham;v211.TextSize=12;v211.TextXAlignment=Enum.TextXAlignment.Left;local v220=Instance.new("TextButton",v198);v220.Size=UDim2.fromOffset(50,20);v220.Position=UDim2.new(1, -110,0,26);v220.BackgroundColor3=Color3.fromRGB(40,40,40);v220.BorderSizePixel=0;v220.Text=v84.Name;v220.TextColor3=Color3.new(1,1,1);v220.Font=Enum.Font.Gotham;v220.TextSize=12;local v230=Instance.new("UICorner",v220);v230.CornerRadius=UDim.new(0,4);local v232=Instance.new("TextLabel",v198);v232.Size=UDim2.fromOffset(50,20);v232.Position=UDim2.new(1, -55,0,26);v232.BackgroundTransparency=1;v232.Text="Jump";v232.TextColor3=Color3.fromRGB(180,180,180);v232.Font=Enum.Font.Gotham;v232.TextSize=12;v232.TextXAlignment=Enum.TextXAlignment.Left;local function v241(v315,v316) v315.BackgroundColor3=Color3.fromRGB(80,80,40);v315.Text="...";local v319;v319=v58.InputBegan:Connect(function(v371,v372) if v372 then return;end if (v371.UserInputType==Enum.UserInputType.Keyboard) then if (v316=="speed") then v83=v371.KeyCode;v315.Text=v83.Name;elseif (v316=="jump") then v84=v371.KeyCode;v315.Text=v84.Name;end v315.BackgroundColor3=Color3.fromRGB(40,40,40);v319:Disconnect();saveSettings();end end);end v199.MouseButton1Click:Connect(function() v241(v199,"speed");end);v220.MouseButton1Click:Connect(function() v241(v220,"jump");end);local v242=Instance.new("Frame",v124);v242.Size=UDim2.new(1, -16,0,1);v242.Position=UDim2.fromOffset(8,184);v242.BackgroundColor3=Color3.fromRGB(50,50,50);v242.BorderSizePixel=0;local v247=Instance.new("TextLabel",v124);v247.Size=UDim2.new(1, -16,0,20);v247.Position=UDim2.fromOffset(8,192);v247.BackgroundTransparency=1;v247.Text="Players";v247.TextColor3=Color3.fromRGB(180,180,180);v247.Font=Enum.Font.GothamSemibold;v247.TextSize=14;v247.TextXAlignment=Enum.TextXAlignment.Left;local v256=Instance.new("ScrollingFrame",v124);v256.Position=UDim2.fromOffset(8,216);v256.Size=UDim2.new(1, -16,1, -216);v256.BackgroundColor3=Color3.fromRGB(20,20,20);v256.BorderSizePixel=0;v256.ScrollBarImageColor3=Color3.fromRGB(60,60,60);v256.ScrollBarThickness=6;local v263=Instance.new("UICorner",v256);v263.CornerRadius=UDim.new(0,4);local v265=Instance.new("UIListLayout",v256);v265.Padding=UDim.new(0,2);local v267=false;local v268,v269;v97.InputBegan:Connect(function(v320) if (v320.UserInputType==Enum.UserInputType.MouseButton1) then v267=true;v268=v320.Position;v269=v88.Position;v320.Changed:Connect(function() if (v320.UserInputState==Enum.UserInputState.End) then v267=false;end end);end end);v58.InputChanged:Connect(function(v321) if ((v321.UserInputType==Enum.UserInputType.MouseMovement) and v267) then local v398=v321.Position-v268 ;v88.Position=UDim2.new(v269.X.Scale,v269.X.Offset + v398.X ,v269.Y.Scale,v269.Y.Offset + v398.Y );end end);local function v270() local v322=v61.Character;return v322 and v322:FindFirstChildOfClass("Humanoid") ;end local function v271() local v323=v270();if v323 then v323.WalkSpeed=(v72 and 400) or v74 ;end end local function v272() local v324=v270();if v324 then v324.JumpPower=(v73 and 400) or v75 ;end end local function v273(v325) v79[v325]=v79[v325] or {} ;for v373,v374 in ipairs(v64.Parts) do local v375=v325:FindFirstChild(v374);if (v375 and  not v79[v325][v375]) then v79[v325][v375]={Size=v375.Size,Transparency=v375.Transparency,CanCollide=v375.CanCollide};end end end local function v274(v327) if  not v76[v327] then return;end local v328=v327.Character;if  not v328 then return;end v273(v328);for v376,v377 in ipairs(v64.Parts) do local v378=v328:FindFirstChild(v377);if v378 then v378.Size=v64.Size;v378.Transparency=v64.Transparency;v378.CanCollide=false;end end end local function v275(v329) local v330=v329.Character;if ( not v330 or  not v79[v330]) then return;end for v379,v380 in pairs(v79[v330]) do if (v379 and v379.Parent) then v379.Size=v380.Size;v379.Transparency=v380.Transparency;v379.CanCollide=v380.CanCollide;end end v79[v330]=nil;end local function v276(v332) if v77[v332] then return;end local v333=Drawing.new("Line");v333.Thickness=1.5;v333.Color=Color3.fromRGB(255,0,0);v333.Visible=false;v77[v332]=v333;end local function v277(v338) if v77[v338] then v77[v338]:Remove();v77[v338]=nil;end end local function v278(v339) if v78[v339] then return;end local v340=Drawing.new("Text");v340.Size=8;v340.Center=true;v340.Outline=true;v340.Color=Color3.fromRGB(255,255,255);v340.Visible=true;v78[v339]=v340;end local function v279(v347) if v78[v347] then v78[v347]:Remove();v78[v347]=nil;end end v59.RenderStepped:Connect(function() local v348=v60.ViewportSize/2 ;v271();v272();for v381,v382 in pairs(v77) do if  not v70 then v382.Visible=false;continue;end local v383=v381.Character and v381.Character:FindFirstChild("HumanoidRootPart") ;if v383 then local v433,v434=v60:WorldToViewportPoint(v383.Position);v382.Visible=v434;v382.From=Vector2.new(v348.X,v348.Y);v382.To=Vector2.new(v433.X,v433.Y);else v382.Visible=false;end end for v384,v385 in pairs(v78) do local v386=v384.Character and v384.Character:FindFirstChild("Head") ;if (v386 and v385) then local v439=(v81 and Vector3.new(0,1.5,0)) or Vector3.new(0, -3.5,0) ;local v440,v441=v60:WorldToViewportPoint(v386.Position + v439 );v385.Visible=v441 and v71 ;v385.Position=Vector2.new(v440.X,v440.Y);v385.Text=((v384.DisplayName~="") and v384.DisplayName) or v384.Name ;if (v76[v384] and v67) then v385.Color=Color3.fromRGB(255,0,0);else v385.Color=Color3.fromRGB(255,255,255);end end end end);local function v280() for v387,v388 in ipairs(v256:GetChildren()) do if  not v388:IsA("UIListLayout") then v388:Destroy();end end for v389,v390 in ipairs(v57:GetPlayers()) do if (v390~=v61) then v278(v390);local v445=Instance.new("TextButton",v256);v445.Size=UDim2.new(1, -4,0,24);v445.BackgroundColor3=Color3.fromRGB(30,30,30);v445.BorderSizePixel=0;v445.Font=Enum.Font.Gotham;v445.TextSize=14;v445.TextColor3=Color3.new(1,1,1);v445.TextXAlignment=Enum.TextXAlignment.Left;v445.Text=" "   .. (((v390.DisplayName~="") and v390.DisplayName) or v390.Name) ;local v456=Instance.new("UICorner",v445);v456.CornerRadius=UDim.new(0,4);local function v458() v445.BackgroundColor3=(v76[v390] and Color3.fromRGB(40,80,40)) or Color3.fromRGB(30,30,30) ;end v458();v390:GetPropertyChangedSignal("DisplayName"):Connect(function() v445.Text=" "   .. (((v390.DisplayName~="") and v390.DisplayName) or v390.Name) ;end);v445.MouseButton1Click:Connect(function() v76[v390]= not v76[v390];if v76[v390] then v274(v390);v276(v390);else v275(v390);v277(v390);end v458();saveSettings();end);end end task.wait();v256.CanvasSize=UDim2.new(0,0,0,v265.AbsoluteContentSize.Y + 4 );end v280();v57.PlayerAdded:Connect(function(v350) v280();v278(v350);end);v57.PlayerRemoving:Connect(function(v351) v279(v351);end);local function v281() if  not v61.Character then return;end for v391,v392 in ipairs(v61.Character:GetChildren()) do if v392:IsA("Tool") then return v392;end end end v59.RenderStepped:Connect(function() if ( not v67 or  not v82) then return;end local v352=v62.Target;if  not v352 then return;end local v353=v352:FindFirstAncestorOfClass("Model");local v354=v353 and v353:FindFirstChildOfClass("Humanoid") ;local v355=v353 and v57:GetPlayerFromCharacter(v353) ;if (v354 and v355 and v76[v355] and (v354.Health>0)) then if ((tick() -v68)>=v66) then v68=tick();local v482=v281();if v482 then v482:Activate();end end end end);v58.InputBegan:Connect(function(v356,v357) if v357 then return;end if (v356.KeyCode==Enum.KeyCode.RightControl) then v69= not v69;v85.Enabled=v69;if v69 then v280();end end if (v356.KeyCode==v83) then v72=true;v271();end if (v356.KeyCode==v84) then v73=true;v272();end if (v356.KeyCode==Enum.KeyCode.Insert) then v81= not v81;v168();saveSettings();end if (v356.UserInputType==Enum.UserInputType.MouseButton2) then v67=true;task.spawn(function() while v67 do for v492 in pairs(v76) do v274(v492);end task.wait(v65);end end);end end);v58.InputEnded:Connect(function(v358) if (v358.KeyCode==v83) then v72=false;v271();end if (v358.KeyCode==v84) then v73=false;v272();end if (v358.UserInputType==Enum.UserInputType.MouseButton2) then v67=false;end end);v61.CharacterAdded:Connect(function(v359) task.wait(0.1);local v360=v359:WaitForChild("Humanoid",5);if v360 then v271();v272();end end);function saveSettings() local v361={HitboxSize=v64.Size.X,Tracers=v70,ESP=v71,ESPPosAboveHead=v81,Triggerbot=v82,SpeedKeybind=v83.Name,JumpKeybind=v84.Name,Selected={}};for v393,v394 in pairs(v76) do table.insert(v361.Selected,v393.Name);end pcall(function() writefile(v80,v63:JSONEncode(v361));end);end function loadSettings() if  not pcall(function() return readfile(v80);end) then return;end local v362=readfile(v80);local v363,v364=pcall(function() return v63:JSONDecode(v362);end);if ( not v363 or  not v364) then return;end if v364.HitboxSize then v64.Size=Vector3.new(v364.HitboxSize,v364.HitboxSize,v364.HitboxSize);v177.Text=tostring(v364.HitboxSize);local v407=(v364.HitboxSize-v194)/(v195-v194) ;v188.Size=UDim2.new(v407,0,1,0);end if (v364.Tracers~=nil) then v70=v364.Tracers;v138();end if (v364.ESP~=nil) then v71=v364.ESP;v148();end if (v364.ESPPosAboveHead~=nil) then v81=v364.ESPPosAboveHead;v168();end if (v364.Triggerbot~=nil) then v82=v364.Triggerbot;v158();end if v364.SpeedKeybind then local v413,v414=pcall(function() return Enum.KeyCode[v364.SpeedKeybind];end);if (v413 and v414) then v83=v414;v199.Text=v83.Name;end end if v364.JumpKeybind then local v415,v416=pcall(function() return Enum.KeyCode[v364.JumpKeybind];end);if (v415 and v416) then v84=v416;v220.Text=v84.Name;end end if v364.Selected then for v459,v460 in ipairs(v364.Selected) do local v461=v57:FindFirstChild(v460);if v461 then v76[v461]=true;v274(v461);v276(v461);end end end end loadSettings();end
+-- ================= KEY SYSTEM =================
+local Players = game:GetService("Players")
+local LP = Players.LocalPlayer
+local UIS = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+
+-- Key system with username binding
+local validKeys = {
+    {Key = "A7F3K9", User = "tillahibillahi"},
+    {Key = "X2B8M1", User = "warcrimeleaker"},
+    {Key = "XgFvD-SFvdS", User = "kernelhookxyz1"},
+    {Key = "XDTx$g-$@1fh", User = "utakke1234567890"},
+    {Key = "H3D7C6", User = "Player5"}
+}
+local keyCorrect = false
+
+-- ================= REALISTIC ADMIN CMD =================
+local keyGui = Instance.new("ScreenGui", game.CoreGui)
+keyGui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame", keyGui)
+frame.Size = UDim2.fromOffset(500,250)
+frame.Position = UDim2.fromScale(0.5,0.5)
+frame.AnchorPoint = Vector2.new(0.5,0.5)
+frame.BackgroundColor3 = Color3.fromRGB(40,40,40)
+frame.BackgroundTransparency = 0.4
+frame.BorderSizePixel = 0
+
+local corner = Instance.new("UICorner", frame)
+corner.CornerRadius = UDim.new(0,6)
+
+-- Terminal output
+local output = Instance.new("TextLabel", frame)
+output.Size = UDim2.new(1,-20,1,-60)
+output.Position = UDim2.fromOffset(10,10)
+output.BackgroundTransparency = 1
+output.TextColor3 = Color3.fromRGB(230,230,230)
+output.Font = Enum.Font.Code
+output.TextSize = 18
+output.TextXAlignment = Enum.TextXAlignment.Left
+output.TextYAlignment = Enum.TextYAlignment.Top
+output.Text = "Kernel\nEnter your access key below:\n>"
+
+-- Input box
+local textbox = Instance.new("TextBox", frame)
+textbox.Size = UDim2.fromOffset(480,35)
+textbox.Position = UDim2.fromOffset(10,200)
+textbox.BackgroundColor3 = Color3.fromRGB(30,30,30)
+textbox.BackgroundTransparency = 0.2
+textbox.TextColor3 = Color3.fromRGB(255,255,255)
+textbox.ClearTextOnFocus = true
+textbox.Font = Enum.Font.Code
+textbox.TextSize = 18
+textbox.PlaceholderText = "Enter Key Here"
+textbox.BorderSizePixel = 0
+
+-- Function to append text
+local function appendOutput(text)
+    output.Text = output.Text .. "\n" .. text
+end
+
+-- ================= DRAGGING FUNCTION =================
+local dragging = false
+local dragInput, dragStart, startPos
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = frame.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+frame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y
+        )
+    end
+end)
+
+-- Key submit logic with username verification
+textbox.FocusLost:Connect(function(enterPressed)
+    if not enterPressed then return end
+    local input = textbox.Text:gsub("%s","")
+    local valid = false
+    local assignedUser = nil
+    
+    for _,data in ipairs(validKeys) do
+        if input == data.Key then 
+            valid = true
+            assignedUser = data.User
+            break 
+        end
+    end
+
+    if valid then
+        if LP.Name == assignedUser or LP.DisplayName == assignedUser then
+            keyCorrect = true
+            keyGui:Destroy()
+            appendOutput("Key accepted. Welcome, "..(LP.DisplayName~="" and LP.DisplayName or LP.Name)..".")
+            -- HAUNTER.cc animation
+            local function playHaunterAnimation(callback)
+                local animGui = Instance.new("ScreenGui", game.CoreGui)
+                animGui.ResetOnSpawn = false
+
+                local haunter = Instance.new("TextLabel", animGui)
+                haunter.Size = UDim2.fromScale(0.5,0.2)
+                haunter.Position = UDim2.fromScale(0.5,0.5)
+                haunter.AnchorPoint = Vector2.new(0.5,0.5)
+                haunter.BackgroundTransparency = 1
+                haunter.Text = "Exodus"
+                haunter.TextColor3 = Color3.fromRGB(200,0,200)
+                haunter.Font = Enum.Font.GothamBold
+                haunter.TextScaled = true
+                haunter.TextStrokeTransparency = 0.6
+
+                local tweenInfo = TweenInfo.new(0.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
+                local tweenProps = {TextTransparency = 0.3, TextSize = 96}
+                local tween = TweenService:Create(haunter, tweenInfo, tweenProps)
+                tween:Play()
+
+                task.delay(2.5, function()
+                    tween:Cancel()
+                    animGui:Destroy()
+                    if callback then callback() end
+                end)
+            end
+
+            playHaunterAnimation(function()
+                initializeScript()
+            end)
+        else
+            textbox.Text = ""
+            appendOutput("> NOT YOUR KEY")
+        end
+    else
+        textbox.Text = ""
+        appendOutput("> INVALID KEY")
+    end
+end)
+
+repeat task.wait() until keyCorrect
+
+-- ================= MAIN SCRIPT =================
+function initializeScript()
+    -- SERVICES
+    local Players = game:GetService("Players")
+    local UIS = game:GetService("UserInputService")
+    local RunService = game:GetService("RunService")
+    local Camera = workspace.CurrentCamera
+    local LP = Players.LocalPlayer
+    local Mouse = LP:GetMouse()
+    local HttpService = game:GetService("HttpService")
+
+    -- SETTINGS
+    local HitboxSettings = {Parts={"HumanoidRootPart"}, Size=Vector3.new(25,25,25), Transparency=1, CanCollide=false}
+    local REFRESH_INTERVAL = 0.5
+    local TRIGGER_DELAY = 0.05
+
+    -- STATE
+    local hitboxHeld = false
+    local lastShot = 0
+    local menuOpen = false
+    local tracersEnabled = false
+    local espEnabled = true
+    local capsHeld = false
+    local altHeld = false
+    local originalWalkSpeed = 25
+    local originalJumpPower = 50
+    local SelectedPlayers = {}
+    local TracerLines = {}
+    local NameESP = {}
+    local OriginalParts = {}
+    local SettingsFileName = "HaunterSettings.json"
+    local espPositionAboveHead = true -- New state for ESP position
+    local triggerbotEnabled = true -- New state for triggerbot
+    local speedKeybind = Enum.KeyCode.CapsLock -- Default keybind for speed
+    local jumpKeybind = Enum.KeyCode.LeftAlt -- Default keybind for jump power
+
+    -- ==================== UI (ImGui-style) ====================
+    local gui = Instance.new("ScreenGui", game.CoreGui)
+    gui.Enabled = false
+    gui.Name = "HaunterImGui"
+
+    -- Main window frame
+    local window = Instance.new("Frame", gui)
+    window.Size = UDim2.fromOffset(320, 560) -- Increased height for new elements
+    window.Position = UDim2.fromScale(0.04, 0.18)
+    window.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    window.BorderSizePixel = 0
+    window.Active = true
+    window.Draggable = false -- We'll implement custom dragging
+
+    local windowCorner = Instance.new("UICorner", window)
+    windowCorner.CornerRadius = UDim.new(0, 4)
+
+    -- Title bar
+    local titleBar = Instance.new("Frame", window)
+    titleBar.Size = UDim2.new(1, 0, 0, 32)
+    titleBar.Position = UDim2.fromOffset(0, 0)
+    titleBar.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    titleBar.BorderSizePixel = 0
+
+    local titleCorner = Instance.new("UICorner", titleBar)
+    titleCorner.CornerRadius = UDim.new(0, 4)
+
+    -- Title label
+    local titleLabel = Instance.new("TextLabel", titleBar)
+    titleLabel.Size = UDim2.new(1, -60, 1, 0)
+    titleLabel.Position = UDim2.fromOffset(8, 0)
+    titleLabel.BackgroundTransparency = 1
+    titleLabel.Text = "Exodus"
+    titleLabel.TextColor3 = Color3.new(1, 1, 1)
+    titleLabel.Font = Enum.Font.GothamSemibold
+    titleLabel.TextSize = 16
+    titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    -- Close button (X)
+    local closeBtn = Instance.new("TextButton", titleBar)
+    closeBtn.Size = UDim2.fromOffset(44, 32)
+    closeBtn.Position = UDim2.new(1, -44, 0, 0)
+    closeBtn.BackgroundTransparency = 1
+    closeBtn.Text = "×"
+    closeBtn.TextColor3 = Color3.new(1, 1, 1)
+    closeBtn.Font = Enum.Font.GothamBold
+    closeBtn.TextSize = 20
+    closeBtn.MouseButton1Click:Connect(function()
+        menuOpen = false
+        gui.Enabled = false
+    end)
+
+    -- Content container
+    local content = Instance.new("Frame", window)
+    content.Size = UDim2.new(1, 0, 1, -32)
+    content.Position = UDim2.fromOffset(0, 32)
+    content.BackgroundTransparency = 1
+
+    -- Helper to create sections
+    local function createSection(parent, y, text)
+        local section = Instance.new("Frame", parent)
+        section.Size = UDim2.new(1, -16, 0, 28)
+        section.Position = UDim2.fromOffset(8, y)
+        section.BackgroundTransparency = 1
+
+        local label = Instance.new("TextLabel", section)
+        label.Size = UDim2.new(1, 0, 1, 0)
+        label.BackgroundTransparency = 1
+        label.Text = text
+        label.TextColor3 = Color3.fromRGB(180, 180, 180)
+        label.Font = Enum.Font.Gotham
+        label.TextSize = 14
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        return section
+    end
+
+    -- Tracers toggle
+    local tracersSection = createSection(content, 8, "Tracers")
+    local tracersToggle = Instance.new("TextButton", tracersSection)
+    tracersToggle.Size = UDim2.fromOffset(50, 20)
+    tracersToggle.Position = UDim2.new(1, -50, 0, 4)
+    tracersToggle.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    tracersToggle.BorderSizePixel = 0
+    tracersToggle.Text = ""
+    local tracersCorner = Instance.new("UICorner", tracersToggle)
+    tracersCorner.CornerRadius = UDim.new(0, 10)
+
+    local function updateTracerToggle()
+        tracersToggle.BackgroundColor3 = tracersEnabled and Color3.fromRGB(0, 150, 0) or Color3.fromRGB(60, 60, 60)
+    end
+
+    tracersToggle.MouseButton1Click:Connect(function()
+        tracersEnabled = not tracersEnabled
+        updateTracerToggle()
+        saveSettings()
+    end)
+    updateTracerToggle()
+
+    -- ESP toggle
+    local espSection = createSection(content, 36, "ESP")
+    local espToggle = Instance.new("TextButton", espSection)
+    espToggle.Size = UDim2.fromOffset(50, 20)
+    espToggle.Position = UDim2.new(1, -50, 0, 4)
+    espToggle.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    espToggle.BorderSizePixel = 0
+    espToggle.Text = ""
+    local espCorner = Instance.new("UICorner", espToggle)
+    espCorner.CornerRadius = UDim.new(0, 10)
+
+    local function updateESPToggle()
+        espToggle.BackgroundColor3 = espEnabled and Color3.fromRGB(0, 150, 0) or Color3.fromRGB(60, 60, 60)
+    end
+
+    espToggle.MouseButton1Click:Connect(function()
+        espEnabled = not espEnabled
+        updateESPToggle()
+        saveSettings()
+    end)
+    updateESPToggle()
+
+    -- Triggerbot toggle
+    local triggerbotSection = createSection(content, 64, "Triggerbot")
+    local triggerbotToggle = Instance.new("TextButton", triggerbotSection)
+    triggerbotToggle.Size = UDim2.fromOffset(50, 20)
+    triggerbotToggle.Position = UDim2.new(1, -50, 0, 4)
+    triggerbotToggle.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    triggerbotToggle.BorderSizePixel = 0
+    triggerbotToggle.Text = ""
+    local triggerbotCorner = Instance.new("UICorner", triggerbotToggle)
+    triggerbotCorner.CornerRadius = UDim.new(0, 10)
+
+    local function updateTriggerbotToggle()
+        triggerbotToggle.BackgroundColor3 = triggerbotEnabled and Color3.fromRGB(0, 150, 0) or Color3.fromRGB(60, 60, 60)
+    end
+
+    triggerbotToggle.MouseButton1Click:Connect(function()
+        triggerbotEnabled = not triggerbotEnabled
+        updateTriggerbotToggle()
+        saveSettings()
+    end)
+    updateTriggerbotToggle()
+
+    -- ESP Position toggle (above/below head)
+    local espPosSection = createSection(content, 92, "ESP Position")
+    local espPosToggle = Instance.new("TextButton", espPosSection)
+    espPosToggle.Size = UDim2.fromOffset(50, 20)
+    espPosToggle.Position = UDim2.new(1, -50, 0, 4)
+    espPosToggle.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    espPosToggle.BorderSizePixel = 0
+    espPosToggle.Text = ""
+    local espPosCorner = Instance.new("UICorner", espPosToggle)
+    espPosCorner.CornerRadius = UDim.new(0, 10)
+
+    local function updateESPPosToggle()
+        espPosToggle.BackgroundColor3 = espPositionAboveHead and Color3.fromRGB(0, 150, 0) or Color3.fromRGB(60, 60, 60)
+    end
+
+    espPosToggle.MouseButton1Click:Connect(function()
+        espPositionAboveHead = not espPositionAboveHead
+        updateESPPosToggle()
+        saveSettings()
+    end)
+    updateESPPosToggle()
+
+    -- Silent FOV (Hitbox Size) slider
+    local fovSection = createSection(content, 120, "Silent FOV")
+
+    local sliderBg = Instance.new("Frame", fovSection)
+    sliderBg.Size = UDim2.fromOffset(100, 4)
+    sliderBg.Position = UDim2.new(1, -106, 0, 12)
+    sliderBg.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    sliderBg.BorderSizePixel = 0
+    local sliderBgCorner = Instance.new("UICorner", sliderBg)
+    sliderBgCorner.CornerRadius = UDim.new(1, 0)
+
+    local fovLabel = Instance.new("TextLabel", fovSection)
+    fovLabel.Size = UDim2.fromOffset(24, 20)
+    fovLabel.Position = UDim2.new(1, -28, 0, 4)
+    fovLabel.BackgroundTransparency = 1
+    fovLabel.Text = "25"
+    fovLabel.TextColor3 = Color3.new(1, 1, 1)
+    fovLabel.Font = Enum.Font.Gotham
+    fovLabel.TextSize = 14
+    fovLabel.TextXAlignment = Enum.TextXAlignment.Right
+
+    local sliderFill = Instance.new("Frame", sliderBg)
+    sliderFill.Size = UDim2.new(0.3, 0, 1, 0)
+    sliderFill.BackgroundColor3 = Color3.fromRGB(100, 50, 200)
+    sliderFill.BorderSizePixel = 0
+    local sliderFillCorner = Instance.new("UICorner", sliderFill)
+    sliderFillCorner.CornerRadius = UDim.new(1, 0)
+
+    local MIN_SIZE = 5
+    local MAX_SIZE = 60
+    local draggingSlider = false
+
+    local function updateHitboxSizeFromSlider(xPos)
+        local rel = math.clamp((xPos - sliderBg.AbsolutePosition.X) / sliderBg.AbsoluteSize.X, 0, 1)
+        sliderFill.Size = UDim2.new(rel, 0, 1, 0)
+        local size = math.floor(MIN_SIZE + (MAX_SIZE - MIN_SIZE) * rel)
+        HitboxSettings.Size = Vector3.new(size, size, size)
+        fovLabel.Text = tostring(size)
+        for plr in pairs(SelectedPlayers) do
+            expandHitboxes(plr)
+        end
+        saveSettings()
+    end
+
+    sliderBg.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            draggingSlider = true
+            updateHitboxSizeFromSlider(input.Position.X)
+        end
+    end)
+
+    sliderBg.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            draggingSlider = false
+        end
+    end)
+
+    UIS.InputChanged:Connect(function(input)
+        if draggingSlider and input.UserInputType == Enum.UserInputType.MouseMovement then
+            updateHitboxSizeFromSlider(input.Position.X)
+        end
+    end)
+
+    -- Keybind customization section
+    local keybindSection = createSection(content, 152, "Keybinds")
+    
+   -- Speed keybind box
+    local speedKeybindBox = Instance.new("TextButton", keybindSection)
+    speedKeybindBox.Size = UDim2.fromOffset(50, 20)
+    speedKeybindBox.Position = UDim2.new(1, -110, 0, 4)
+    speedKeybindBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    speedKeybindBox.BorderSizePixel = 0
+    speedKeybindBox.Text = speedKeybind.Name
+    speedKeybindBox.TextColor3 = Color3.new(1, 1, 1)
+    speedKeybindBox.Font = Enum.Font.Gotham
+    speedKeybindBox.TextSize = 12
+    local speedKeybindCorner = Instance.new("UICorner", speedKeybindBox)
+    speedKeybindCorner.CornerRadius = UDim.new(0, 4)
+    
+    local speedKeybindLabel = Instance.new("TextLabel", keybindSection)
+    speedKeybindLabel.Size = UDim2.fromOffset(50, 20)
+    speedKeybindLabel.Position = UDim2.new(1, -55, 0, 4)
+    speedKeybindLabel.BackgroundTransparency = 1
+    speedKeybindLabel.Text = "Speed"
+    speedKeybindLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+    speedKeybindLabel.Font = Enum.Font.Gotham
+    speedKeybindLabel.TextSize = 12
+    speedKeybindLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    -- Jump keybind box
+    local jumpKeybindBox = Instance.new("TextButton", keybindSection)
+    jumpKeybindBox.Size = UDim2.fromOffset(50, 20)
+    jumpKeybindBox.Position = UDim2.new(1, -110, 0, 26)
+    jumpKeybindBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    jumpKeybindBox.BorderSizePixel = 0
+    jumpKeybindBox.Text = jumpKeybind.Name
+    jumpKeybindBox.TextColor3 = Color3.new(1, 1, 1)
+    jumpKeybindBox.Font = Enum.Font.Gotham
+    jumpKeybindBox.TextSize = 12
+    local jumpKeybindCorner = Instance.new("UICorner", jumpKeybindBox)
+    jumpKeybindCorner.CornerRadius = UDim.new(0, 4)
+    
+    local jumpKeybindLabel = Instance.new("TextLabel", keybindSection)
+    jumpKeybindLabel.Size = UDim2.fromOffset(50, 20)
+    jumpKeybindLabel.Position = UDim2.new(1, -55, 0, 26)
+    jumpKeybindLabel.BackgroundTransparency = 1
+    jumpKeybindLabel.Text = "Jump"
+    jumpKeybindLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+    jumpKeybindLabel.Font = Enum.Font.Gotham
+    jumpKeybindLabel.TextSize = 12
+    jumpKeybindLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    -- Keybind assignment logic
+    local function assignKeybind(keybindBox, keybindType)
+        keybindBox.BackgroundColor3 = Color3.fromRGB(80, 80, 40)
+        keybindBox.Text = "..."
+        
+        local connection
+        connection = UIS.InputBegan:Connect(function(input, gameProcessed)
+            if gameProcessed then return end
+            
+            if input.UserInputType == Enum.UserInputType.Keyboard then
+                if keybindType == "speed" then
+                    speedKeybind = input.KeyCode
+                    keybindBox.Text = speedKeybind.Name
+                elseif keybindType == "jump" then
+                    jumpKeybind = input.KeyCode
+                    keybindBox.Text = jumpKeybind.Name
+                end
+                
+                keybindBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                connection:Disconnect()
+                saveSettings()
+            end
+        end)
+    end
+
+    speedKeybindBox.MouseButton1Click:Connect(function()
+        assignKeybind(speedKeybindBox, "speed")
+    end)
+
+    jumpKeybindBox.MouseButton1Click:Connect(function()
+        assignKeybind(jumpKeybindBox, "jump")
+    end)
+
+    -- Separator line
+    local separator = Instance.new("Frame", content)
+    separator.Size = UDim2.new(1, -16, 0, 1)
+    separator.Position = UDim2.fromOffset(8, 184)
+    separator.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    separator.BorderSizePixel = 0
+
+    -- Player list label
+    local playerListLabel = Instance.new("TextLabel", content)
+    playerListLabel.Size = UDim2.new(1, -16, 0, 20)
+    playerListLabel.Position = UDim2.fromOffset(8, 192)
+    playerListLabel.BackgroundTransparency = 1
+    playerListLabel.Text = "Players"
+    playerListLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+    playerListLabel.Font = Enum.Font.GothamSemibold
+    playerListLabel.TextSize = 14
+    playerListLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    -- Player list container
+    local list = Instance.new("ScrollingFrame", content)
+    list.Position = UDim2.fromOffset(8, 216)
+    list.Size = UDim2.new(1, -16, 1, -216)
+    list.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+    list.BorderSizePixel = 0
+    list.ScrollBarImageColor3 = Color3.fromRGB(60, 60, 60)
+    list.ScrollBarThickness = 6
+
+    local listCorner = Instance.new("UICorner", list)
+    listCorner.CornerRadius = UDim.new(0, 4)
+
+    local layout = Instance.new("UIListLayout", list)
+    layout.Padding = UDim.new(0, 2)
+
+    -- Custom dragging for the window
+    local draggingWindow = false
+    local dragStart, startPos
+
+    titleBar.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            draggingWindow = true
+            dragStart = input.Position
+            startPos = window.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    draggingWindow = false
+                end
+            end)
+        end
+    end)
+
+    UIS.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement and draggingWindow then
+            local delta = input.Position - dragStart
+            window.Position = UDim2.new(
+                startPos.X.Scale,
+                startPos.X.Offset + delta.X,
+                startPos.Y.Scale,
+                startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
+
+    -- ==================== HELPERS ====================
+    local function getHumanoid()
+        local char = LP.Character
+        return char and char:FindFirstChildOfClass("Humanoid")
+    end
+
+    local function applyCapsWalkSpeed()
+        local hum = getHumanoid()
+        if hum then hum.WalkSpeed = capsHeld and 400 or originalWalkSpeed end
+    end
+
+    local function applyAltJumpPower()
+        local hum = getHumanoid()
+        if hum then hum.JumpPower = altHeld and 400 or originalJumpPower end
+    end
+
+    -- HITBOX FUNCTIONS
+    local function saveOriginal(char)
+        OriginalParts[char] = OriginalParts[char] or {}
+        for _,name in ipairs(HitboxSettings.Parts) do
+            local p = char:FindFirstChild(name)
+            if p and not OriginalParts[char][p] then
+                OriginalParts[char][p] = {Size=p.Size, Transparency=p.Transparency, CanCollide=p.CanCollide}
+            end
+        end
+    end
+
+    local function expandHitboxes(plr)
+        if not SelectedPlayers[plr] then return end
+        local char = plr.Character
+        if not char then return end
+        saveOriginal(char)
+        for _,name in ipairs(HitboxSettings.Parts) do
+            local p = char:FindFirstChild(name)
+            if p then
+                p.Size = HitboxSettings.Size
+                p.Transparency = HitboxSettings.Transparency
+                p.CanCollide = false
+            end
+        end
+    end
+
+    local function restoreHitboxes(plr)
+        local char = plr.Character
+        if not char or not OriginalParts[char] then return end
+        for part,data in pairs(OriginalParts[char]) do
+            if part and part.Parent then
+                part.Size = data.Size
+                part.Transparency = data.Transparency
+                part.CanCollide = data.CanCollide
+            end
+        end
+        OriginalParts[char] = nil
+    end
+
+    -- ================= TRACERS =================
+    local function createTracer(plr)
+        if TracerLines[plr] then return end
+        local l = Drawing.new("Line")
+        l.Thickness = 1.5
+        l.Color = Color3.fromRGB(255,0,0)
+        l.Visible = false
+        TracerLines[plr] = l
+    end
+
+    local function removeTracer(plr)
+        if TracerLines[plr] then
+            TracerLines[plr]:Remove()
+            TracerLines[plr] = nil
+        end
+    end
+
+    -- ================= NAME ESP =================
+    local function createNameESP(plr)
+        if NameESP[plr] then return end
+        local t = Drawing.new("Text")
+        t.Size = 8
+        t.Center = true
+        t.Outline = true
+        t.Color = Color3.fromRGB(255,255,255)
+        t.Visible = true
+        NameESP[plr] = t
+    end
+
+    local function removeNameESP(plr)
+        if NameESP[plr] then
+            NameESP[plr]:Remove()
+            NameESP[plr] = nil
+        end
+    end
+
+    -- ================= RENDER =================
+    RunService.RenderStepped:Connect(function()
+        local center = Camera.ViewportSize / 2
+        applyCapsWalkSpeed()
+        applyAltJumpPower()
+
+        -- Tracers
+        for plr,line in pairs(TracerLines) do
+            if not tracersEnabled then line.Visible=false continue end
+            local hrp = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
+            if hrp then
+                local pos,onScreen = Camera:WorldToViewportPoint(hrp.Position)
+                line.Visible = onScreen
+                line.From = Vector2.new(center.X,center.Y)
+                line.To = Vector2.new(pos.X,pos.Y)
+            else
+                line.Visible = false
+            end
+        end
+
+        -- Name ESP with position toggle
+        for plr,txt in pairs(NameESP) do
+            local head = plr.Character and plr.Character:FindFirstChild("Head")
+            if head and txt then
+                local offset = espPositionAboveHead and Vector3.new(0,1.5,0) or Vector3.new(0,-3.5,0)
+                local pos,onScreen = Camera:WorldToViewportPoint(head.Position + offset)
+                txt.Visible = onScreen and espEnabled
+                txt.Position = Vector2.new(pos.X,pos.Y)
+                txt.Text = plr.DisplayName ~= "" and plr.DisplayName or plr.Name
+                
+                if SelectedPlayers[plr] and hitboxHeld then
+                    txt.Color = Color3.fromRGB(255,0,0)
+                else
+                    txt.Color = Color3.fromRGB(255,255,255)
+                end
+            end
+        end
+    end)
+
+    -- ================= PLAYER LIST =================
+    local function refreshPlayerList()
+        for _,c in ipairs(list:GetChildren()) do if not c:IsA("UIListLayout") then c:Destroy() end end
+        for _,plr in ipairs(Players:GetPlayers()) do
+            if plr ~= LP then
+                createNameESP(plr)
+                local btn = Instance.new("TextButton", list)
+                btn.Size = UDim2.new(1, -4, 0, 24)
+                btn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+                btn.BorderSizePixel = 0
+                btn.Font = Enum.Font.Gotham
+                btn.TextSize = 14
+                btn.TextColor3 = Color3.new(1, 1, 1)
+                btn.TextXAlignment = Enum.TextXAlignment.Left
+                btn.Text = " " .. (plr.DisplayName ~= "" and plr.DisplayName or plr.Name)
+
+                local btnCorner = Instance.new("UICorner", btn)
+                btnCorner.CornerRadius = UDim.new(0, 4)
+
+                local function update()
+                    btn.BackgroundColor3 = SelectedPlayers[plr] and Color3.fromRGB(40, 80, 40) or Color3.fromRGB(30, 30, 30)
+                end
+                update()
+                plr:GetPropertyChangedSignal("DisplayName"):Connect(function()
+                    btn.Text = " " .. (plr.DisplayName ~= "" and plr.DisplayName or plr.Name)
+                end)
+                btn.MouseButton1Click:Connect(function()
+                    SelectedPlayers[plr] = not SelectedPlayers[plr]
+                    if SelectedPlayers[plr] then
+                        expandHitboxes(plr)
+                        createTracer(plr)
+                    else
+                        restoreHitboxes(plr)
+                        removeTracer(plr)
+                    end
+                    update()
+                    saveSettings()
+                end)
+            end
+        end
+        task.wait()
+        list.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y + 4)
+    end
+
+    refreshPlayerList()
+    Players.PlayerAdded:Connect(function(plr)
+        refreshPlayerList()
+        createNameESP(plr)
+    end)
+    Players.PlayerRemoving:Connect(function(plr)
+        removeNameESP(plr)
+    end)
+
+    -- ================= TRIGGERBOT =================
+    local function getTool()
+        if not LP.Character then return end
+        for _,v in ipairs(LP.Character:GetChildren()) do
+            if v:IsA("Tool") then return v end
+        end
+    end
+
+    RunService.RenderStepped:Connect(function()
+        if not hitboxHeld or not triggerbotEnabled then return end
+        local t = Mouse.Target
+        if not t then return end
+        local char = t:FindFirstAncestorOfClass("Model")
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        local plr = char and Players:GetPlayerFromCharacter(char)
+        if hum and plr and SelectedPlayers[plr] and hum.Health > 0 then
+            if tick() - lastShot >= TRIGGER_DELAY then
+                lastShot = tick()
+                local tool = getTool()
+                if tool then tool:Activate() end
+            end
+        end
+    end)
+
+    -- ================= INPUT =================
+    UIS.InputBegan:Connect(function(i, gp)
+        if gp then return end
+        if i.KeyCode == Enum.KeyCode.RightControl then
+            menuOpen = not menuOpen
+            gui.Enabled = menuOpen
+            if menuOpen then refreshPlayerList() end
+        end
+        if i.KeyCode == speedKeybind then
+            capsHeld = true
+            applyCapsWalkSpeed()
+        end
+        if i.KeyCode == jumpKeybind then
+            altHeld = true
+            applyAltJumpPower()
+        end
+        if i.KeyCode == Enum.KeyCode.Insert then
+            espPositionAboveHead = not espPositionAboveHead
+            updateESPPosToggle()
+            saveSettings()
+        end
+        if i.UserInputType == Enum.UserInputType.MouseButton2 then
+            hitboxHeld = true
+            task.spawn(function()
+                while hitboxHeld do
+                    for plr in pairs(SelectedPlayers) do expandHitboxes(plr) end
+                    task.wait(REFRESH_INTERVAL)
+                end
+            end)
+        end
+    end)
+
+    UIS.InputEnded:Connect(function(i)
+        if i.KeyCode == speedKeybind then
+            capsHeld = false
+            applyCapsWalkSpeed()
+        end
+        if i.KeyCode == jumpKeybind then
+            altHeld = false
+            applyAltJumpPower()
+        end
+        if i.UserInputType == Enum.UserInputType.MouseButton2 then
+            hitboxHeld = false
+        end
+    end)
+
+    -- ================= ENSURE SPEED/POWER AFTER RESPAWN =================
+    LP.CharacterAdded:Connect(function(char)
+        task.wait(0.1)
+        local hum = char:WaitForChild("Humanoid", 5)
+        if hum then
+            applyCapsWalkSpeed()
+            applyAltJumpPower()
+        end
+    end)
+
+    -- ================= SETTINGS SAVE/LOAD =================
+    function saveSettings()
+        local data = {
+            HitboxSize = HitboxSettings.Size.X,
+            Tracers = tracersEnabled,
+            ESP = espEnabled,
+            ESPPosAboveHead = espPositionAboveHead,
+            Triggerbot = triggerbotEnabled,
+            SpeedKeybind = speedKeybind.Name,
+            JumpKeybind = jumpKeybind.Name,
+            Selected = {}
+        }
+        for plr, _ in pairs(SelectedPlayers) do
+            table.insert(data.Selected, plr.Name)
+        end
+        pcall(function()
+            writefile(SettingsFileName, HttpService:JSONEncode(data))
+        end)
+    end
+
+    function loadSettings()
+        if not pcall(function() return readfile(SettingsFileName) end) then return end
+        local content = readfile(SettingsFileName)
+        local success, data = pcall(function() return HttpService:JSONDecode(content) end)
+        if not success or not data then return end
+        if data.HitboxSize then
+            HitboxSettings.Size = Vector3.new(data.HitboxSize, data.HitboxSize, data.HitboxSize)
+            fovLabel.Text = tostring(data.HitboxSize)
+            local rel = (data.HitboxSize - MIN_SIZE) / (MAX_SIZE - MIN_SIZE)
+            sliderFill.Size = UDim2.new(rel, 0, 1, 0)
+        end
+        if data.Tracers ~= nil then
+            tracersEnabled = data.Tracers
+            updateTracerToggle()
+        end
+        if data.ESP ~= nil then
+            espEnabled = data.ESP
+            updateESPToggle()
+        end
+        if data.ESPPosAboveHead ~= nil then
+            espPositionAboveHead = data.ESPPosAboveHead
+            updateESPPosToggle()
+        end
+        if data.Triggerbot ~= nil then
+            triggerbotEnabled = data.Triggerbot
+            updateTriggerbotToggle()
+        end
+        if data.SpeedKeybind then
+            local success, key = pcall(function() return Enum.KeyCode[data.SpeedKeybind] end)
+            if success and key then
+                speedKeybind = key
+                speedKeybindBox.Text = speedKeybind.Name
+            end
+        end
+        if data.JumpKeybind then
+            local success, key = pcall(function() return Enum.KeyCode[data.JumpKeybind] end)
+           if success and key then
+                jumpKeybind = key
+                jumpKeybindBox.Text = jumpKeybind.Name
+            end
+        end
+        if data.Selected then
+            for _, name in ipairs(data.Selected) do
+                local plr = Players:FindFirstChild(name)
+                if plr then
+                    SelectedPlayers[plr] = true
+                    expandHitboxes(plr)
+                    createTracer(plr)
+                end
+            end
+        end
+    end
+
+    loadSettings()
+end
